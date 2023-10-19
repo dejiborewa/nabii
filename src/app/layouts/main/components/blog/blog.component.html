@@ -1,0 +1,54 @@
+<section
+  class="breadcrumb"
+  [ngStyle]="{
+    position: 'relative',
+    width: '100%',
+    display: 'flex',
+    transition: '0.5s',
+    'margin-bottom': '0px',
+    'animation-name': 'FadeIn',
+    'animation-duration': '3s',
+    'transition-timing-function': 'linear',
+    'align-items': 'center',
+    background: 'linear-gradient(#000000b0 40%, #00000080 100%),' + bgImage,
+    'background-size': 'cover',
+    'background-position': 'center'
+  }">
+  <div class="content">
+    <div class="sect">
+      <h3>{{ title }}</h3>
+      <ul class="breadcrumb">
+        <li><a routerLink="/">Home</a></li>
+        <li>{{ sTitle }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="blog">
+  <div class="container">
+    <div class="row" *ngIf="blog">
+      <div class="col-md-12" *ngIf="blog">
+        <div class="row mb-30">
+          <div class="col-md-5 no-padding">
+            <img class="img-fluid" [src]="blog.imageUrl" alt="Thumb" />
+          </div>
+          <div class="col-md-7">
+            <div class="pa-30">
+              <h4 class="page-title">{{ blog.title }}</h4>
+              <span class="bold" [innerHTML]="blog.brief"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pa-30">
+              <div class="inner pt-30" [innerHtml]="blog.content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

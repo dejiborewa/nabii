@@ -36,3 +36,18 @@
 		position: absolute;
 	}
 }
+
+.checkbox-nabii-container {
+	display: flex;
+
+	a {
+		cursor: pointer;
+	}
+}
+
+.checkbox-nabii {
+	width: 20px !important;
+	height: 20px !important;
+	margin-right: 1rem;
+	margin-bottom: 0 !important;
+}

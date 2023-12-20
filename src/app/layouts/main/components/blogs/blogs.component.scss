@@ -22,17 +22,33 @@ h3 {
 }
 
 .audio-image {
-	width: 35%;
-	height: 400px;
-	display: block;
+	width: 100%;
+
+	@media only screen and (min-width: 768px) {
+		width: 35%;
+		height: 400px;
+		display: block;
+	}
 }
 
 .audio-content {
-	width: 50%;
-	text-align: justify;
+	@media only screen and (min-width: 768px) {
+		width: 50%;
+		text-align: justify;
+	}
+}
+
+.audio-content-header {
+	margin: 14px 0;
+
+	@media only screen and (min-width: 768px) {
+		margin: 0;
+	}
 }
 
 .audio-innerContainer {
-	display: flex;
-	gap: 2rem;
+	@media only screen and (min-width: 768px) {
+		display: flex;
+		gap: 2rem;
+	}
 }

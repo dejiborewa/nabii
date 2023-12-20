@@ -15,7 +15,6 @@ export class MembershipComponent implements OnInit {
 	bgImage = 'url("../../../assets/images/building.jpg")';
 	title: string = "Membership";
 	isLoading: boolean = false;
-
 	fetching: boolean = false;
 	showCategory: boolean = false;
 	chosenCategory = "Category of Membership:";
@@ -206,6 +205,20 @@ export class MembershipComponent implements OnInit {
 		"Brand association and increased visibility through mentions on the NAB website",
 	];
 
+	agreement = false;
+
+	handleCheckbox = (event: Event) => {
+		if (event.target instanceof HTMLInputElement) {
+			const isChecked = event.target.checked;
+
+			if (isChecked) {
+				this.agreement = true;
+			} else {
+				this.agreement = false;
+			}
+		}
+	};
+
 	showMultipleCountries = false;
 	countriesOfOrganization: any = [];
 	chosenMultipleCountries = "Countries of Operation";
@@ -289,33 +302,33 @@ export class MembershipComponent implements OnInit {
 	});
 
 	async onCreate() {
-		this.isSubmitting = true;
-		let nameOfOrganization = this.form.value.nameOfOrganization;
-		let countriesOfOrganization = this.countriesOfOrganization;
-		let cityOfHeadquarter = this.form.value.cityOfHeadquarter;
-		let countryOfHeadquarter = this.countryOfHeadquarter;
-		let primaryContactPerson = this.form.value.primaryContactPerson;
-		let primaryContactPersonEmail = this.form.value.primaryContactPersonEmail;
-		let primaryContactPersonPhone = this.form.value.primaryContactPersonPhone;
-		let address = this.form.value.address;
-		let email = this.form.value.email;
-		let contactNumber = this.form.value.contactNumber;
-		let contactPerson = this.form.value.contactPerson;
-		let category = this.chosenCategory;
-		let industry = this.chosenIndustry;
-		let organizationType = this.chosenOrganization;
-		let areaOfInterest = this.chosenAreaOfInterest;
-		let exclusiveContent = this.chosenExclusiveContent;
-		let privateDiscussionPlatform = this.chosenPrivateDiscussionPlatforms;
-		let heardFrom = this.chosenMedium;
-		let id = this.memberships.length + 1;
-		let sId = id.toString();
-
-		if (this.form.invalid) {
+		if (this.form.invalid || !this.agreement) {
 			this.isSubmitting = false;
 			return;
 		} else {
-			this.form.disable;
+			this.isSubmitting = true;
+			let nameOfOrganization = this.form.value.nameOfOrganization;
+			let countriesOfOrganization = this.countriesOfOrganization;
+			let cityOfHeadquarter = this.form.value.cityOfHeadquarter;
+			let countryOfHeadquarter = this.countryOfHeadquarter;
+			let primaryContactPerson = this.form.value.primaryContactPerson;
+			let primaryContactPersonEmail = this.form.value.primaryContactPersonEmail;
+			let primaryContactPersonPhone = this.form.value.primaryContactPersonPhone;
+			let address = this.form.value.address;
+			let email = this.form.value.email;
+			let contactNumber = this.form.value.contactNumber;
+			let contactPerson = this.form.value.contactPerson;
+			let category = this.chosenCategory;
+			let industry = this.chosenIndustry;
+			let organizationType = this.chosenOrganization;
+			let areaOfInterest = this.chosenAreaOfInterest;
+			let exclusiveContent = this.chosenExclusiveContent;
+			let privateDiscussionPlatform = this.chosenPrivateDiscussionPlatforms;
+			let heardFrom = this.chosenMedium;
+			let id = this.memberships.length + 1;
+			let sId = id.toString();
+
+			// this.form.disable;
 
 			let payload = {
 				nameOfOrganization: nameOfOrganization,
@@ -341,15 +354,13 @@ export class MembershipComponent implements OnInit {
 
 			// console.log(payload);
 
-			this.appService.membership(sId, payload);
+			await this.appService.membership(sId, payload);
 
 			this.msgg =
 				"You registration form has been submitted and you may now proceed to payment using the provided payment information.";
 
 			this.form.reset();
-
 			this.isSubmitting = false;
-
 
 			// email notification service
 			try {

@@ -421,6 +421,20 @@
 										</div>
 									</div>
 
+									<div class="checkbox-nabii-container">
+										<input
+											type="checkbox"
+											class="checkbox-nabii"
+											(click)="handleCheckbox($event)"
+											required
+										/>
+										<a
+											href="https://firebasestorage.googleapis.com/v0/b/iif-ace.appspot.com/o/documents%2FNEW%20NABII%20membership%20agreement.pdf?alt=media&token=5e8bfb1e-029c-491e-b7ed-4793d33f6f38&_gl=1*1h381z2*_ga*MTgxMjc3MTM4NS4xNjkxNTExNTg2*_ga_CW55HF8NVT*MTY5ODAwODk2MS41OC4xLjE2OTgwMDkwMTIuOS4wLjA."
+											target="_blank"
+											>NABII Membership Agreement</a
+										>
+									</div>
+
 									<div class="col-md-12 mb-5">
 										<p>{{ msgg }}</p>
 									</div>
@@ -459,7 +473,7 @@
 									</div>
 								</div>
 
-								<div class="mt-2 mb-2">
+								<div class="mt-4 mb-4">
 									<div
 										class="alert"
 										*ngIf="showAlert"
